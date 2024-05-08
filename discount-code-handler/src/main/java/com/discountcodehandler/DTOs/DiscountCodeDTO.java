@@ -6,18 +6,24 @@ import lombok.*;
 
 import java.util.Date;
 
-@NoArgsConstructor
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Builder
 @Getter
 @Setter
 public class DiscountCodeDTO {
 
-    @JsonProperty private String promoCode;
+    @JsonProperty
+    private String promoCode;
 
-    @JsonProperty private Date expirationDate;
+    @JsonProperty
+    private Date expirationDate;
 
-    @JsonProperty private Price price;
+    @JsonProperty
+    private Price price;
 
-    @JsonProperty private long maximalNumberUsage;
+    @JsonProperty
+    private long maximalNumberUsage;
+
+    @JsonProperty
+    private long numberOfUses;
 }

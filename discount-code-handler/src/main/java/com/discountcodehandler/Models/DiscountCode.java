@@ -1,7 +1,13 @@
 package com.discountcodehandler.Models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.*;
+import org.springframework.lang.Nullable;
 
 import java.util.Date;
 
@@ -9,32 +15,33 @@ import java.util.Date;
 @AllArgsConstructor
 @Builder
 @Entity
+@Getter
+@Setter
 @Table(name = "DiscountCode")
 public class DiscountCode {
 
-    @Column(name =  "code_id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Getter @Setter
-    @Column(name = "promo_code", unique = true, nullable = false)
+
+    @Column(name = "promoCode", unique = true) //sprawdzic czy nie zmienic column na jakiegos uniqa
+    @NotNull
+    @NotBlank(message = "Promo code must not be blank")
+    @Size(min = 3, max = 24, message = "Promo code must be between 3 and 24 characters.")
+    @Pattern(regexp = "^[a-zA-Z0-9]*$", message = "Promo code must contain only alphanumeric characters")
     private String promoCode;
 
-    @Getter @Setter
-    @Column(name = "expiration_date", nullable = false)
+
+    @NotNull
     private Date expirationDate;
 
-    @Getter @Setter
-    @Column(name = "price", nullable = false)
+    @NotNull
     private Price price;
 
-
-
-    @Getter @Setter
-    @Column(name = "maximal_number_of_usage", nullable = false)
+    @NotNull
     private long maximalNumberOfUsage;
 
-
-
+    @NotNull
+    private long numberOfUses;
 }

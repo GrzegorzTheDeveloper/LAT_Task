@@ -1,6 +1,7 @@
 package com.discountcodehandler.Models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,16 +21,16 @@ public class Purchase {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long purchaseId;
 
-    @Column(name = "date", nullable = false)
+    @NotNull
     private Date date;
 
-    @Column(name = "regular_price", nullable = false)
+    @NotNull
     private double regularPrice;
 
-    @Column(name = "discount")
+
     private double discount;
 
-    @Column(name = "product_id")
-    private Long productId;
+    @NotNull
+    private Product product;
 
 }

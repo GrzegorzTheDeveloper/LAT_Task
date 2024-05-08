@@ -4,19 +4,15 @@ import com.discountcodehandler.Models.Price;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
-@NoArgsConstructor
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Builder
 @Getter
 @Setter
 public class ProductDTO {
-    @JsonProperty private Price price;
+    @JsonProperty
+    private Price price;
 
-    @JsonProperty private String description;
+    @JsonProperty
+    private String description;
 
-    public ProductDTO(Price price) {
-
-        this.price = price;
-
-    }
 }

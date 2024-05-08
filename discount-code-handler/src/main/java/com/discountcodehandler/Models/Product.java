@@ -1,6 +1,7 @@
 package com.discountcodehandler.Models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -12,15 +13,15 @@ import lombok.NoArgsConstructor;
 @Table(name = "Product")
 public class Product {
 
-    @Column(name = "product_id")
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long productId;
 
-    @Column(name = "name", nullable = false)
+    @NotNull
     private String name;
 
-    @Column(name = "price", nullable = false)
+    @NotNull
     private Price price;
 
     @Column(name = "description")
