@@ -11,9 +11,7 @@ import org.springframework.lang.Nullable;
 
 import java.util.Date;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@RequiredArgsConstructor
 @Entity
 @Getter
 @Setter
@@ -37,6 +35,7 @@ public class DiscountCode {
     private Date expirationDate;
 
     @NotNull
+    @Embedded
     private Price price;
 
     @NotNull

@@ -1,17 +1,16 @@
 package com.discountcodehandler.Models;
-
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+import java.io.Serializable;
+
+@RequiredArgsConstructor
 @Entity
+@Getter
+@Setter
 @Table(name = "Product")
-public class Product {
+public class Product implements Serializable {
 
 
     @Id
@@ -22,10 +21,10 @@ public class Product {
     private String name;
 
     @NotNull
+    @Embedded
     private Price price;
 
-    @Column(name = "description")
     private String description;
 
-    //mozliwe ze trzeba dodac konstruktor bez description
+
 }
