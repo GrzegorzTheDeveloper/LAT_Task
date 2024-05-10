@@ -1,4 +1,4 @@
-package com.discountcodehandler.Models;
+package com.discountcodehandler.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -7,7 +7,6 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.*;
-import org.springframework.lang.Nullable;
 
 import java.util.Date;
 
@@ -16,7 +15,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Table(name = "DiscountCode")
-public class DiscountCode {
+public class DiscountCodeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,7 +35,7 @@ public class DiscountCode {
 
     @NotNull
     @Embedded
-    private Price price;
+    private PriceEntity priceEntity;
 
     @NotNull
     private long maximalNumberOfUsage;

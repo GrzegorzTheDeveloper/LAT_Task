@@ -1,6 +1,6 @@
-package com.discountcodehandler.Models.DTOs;
+package com.discountcodehandler.models.dtos;
 
-import com.discountcodehandler.Models.Product;
+import com.discountcodehandler.models.ProductEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
@@ -9,7 +9,7 @@ import java.util.Date;
 @RequiredArgsConstructor
 @Getter
 @Setter
-public class PurchaseDTO {
+public class Purchase {
     @JsonProperty
     private Date date;
 
@@ -20,6 +20,6 @@ public class PurchaseDTO {
     private double discount;
 
     @JsonProperty
-    private Product product;
+    private ProductEntity productEntity;
 
 }

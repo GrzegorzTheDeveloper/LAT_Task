@@ -1,4 +1,4 @@
-package com.discountcodehandler.Models;
+package com.discountcodehandler.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Table(name = "Product")
-public class Product implements Serializable {
+public class ProductEntity implements Serializable {
 
 
     @Id
@@ -22,7 +22,7 @@ public class Product implements Serializable {
 
     @NotNull
     @Embedded
-    private Price price;
+    private PriceEntity priceEntity;
 
     private String description;
 
