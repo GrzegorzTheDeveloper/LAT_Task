@@ -15,11 +15,15 @@ import java.net.URI;
 import java.util.List;
 
 @Controller
-@RequiredArgsConstructor
 @RequestMapping(value = "/products")
 public class ProductController {
 
     private final ProductService productService;
+
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+        System.out.println("Logged");
+    }
 
     @PostMapping
     public ResponseEntity<Product> addProduct(@RequestBody ProductDTO productDTO){

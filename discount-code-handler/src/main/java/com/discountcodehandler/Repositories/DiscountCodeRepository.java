@@ -7,8 +7,5 @@ import java.util.List;
 
 public interface DiscountCodeRepository extends JpaRepository<DiscountCode, Long> {
 
-//    List<DiscountCode> findAllPromoCodes();
-//    DiscountCode findByPromoCode(String promoCode);
-
 
 }
