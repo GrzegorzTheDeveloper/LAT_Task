@@ -1,6 +1,6 @@
 package com.discountcodehandler.models.dtos;
 
-import com.discountcodehandler.models.PriceEntity;
+import com.discountcodehandler.models.Price;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
@@ -13,7 +13,7 @@ public class Product {
     @JsonProperty
     private String name;
     @JsonProperty
-    private PriceEntity priceEntity;
+    private Price price;
     @JsonProperty
     private String description;
 

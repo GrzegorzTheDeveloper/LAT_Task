@@ -2,6 +2,7 @@ package com.discountcodehandler.models.dtos;
 
 import com.discountcodehandler.models.ProductEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.time.LocalDate;
 import lombok.*;
 
 import java.util.Date;
@@ -11,7 +12,7 @@ import java.util.Date;
 @Setter
 public class Purchase {
     @JsonProperty
-    private Date date;
+    private LocalDate date;
 
     @JsonProperty
     private double regularPrice;

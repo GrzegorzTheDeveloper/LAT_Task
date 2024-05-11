@@ -1,10 +1,9 @@
 package com.discountcodehandler.models.dtos;
 
-import com.discountcodehandler.models.PriceEntity;
+import com.discountcodehandler.models.Price;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.time.LocalDate;
 import lombok.*;
-
-import java.util.Date;
 
 @RequiredArgsConstructor
 @Getter
@@ -15,10 +14,10 @@ public class DiscountCode {
     private String promoCode;
 
     @JsonProperty
-    private Date expirationDate;
+    private LocalDate expirationDate;
 
     @JsonProperty
-    private PriceEntity priceEntity;
+    private Price price;
 
     @JsonProperty
     private long maximalNumberUsage;

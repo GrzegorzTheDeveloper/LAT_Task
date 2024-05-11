@@ -5,6 +5,7 @@ import com.discountcodehandler.models.ProductEntity;
 import com.discountcodehandler.services.ProductService;
 import java.net.URI;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,12 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/products")
 public class ProductController {
 
-  private final ProductService productService;
+  @Autowired
+  private ProductService productService;
 
-  public ProductController(ProductService productService) {
-    this.productService = productService;
 
-  }
 
   @PostMapping("/addProduct")
   public ResponseEntity<ProductEntity> addProduct(@RequestBody Product product) {

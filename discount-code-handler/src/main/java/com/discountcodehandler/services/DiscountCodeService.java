@@ -24,20 +24,26 @@ public class DiscountCodeService {
     return promoCodes;
   }
 
-  public DiscountCodeEntity getPromoCodeDetails(String promoCode)
-      throws DiscountCodeNotFoundException {
+  public DiscountCodeEntity getPromoCodeDetails(String promoCode) {
 
     return discountCodeRepository.findByPromoCode(promoCode)
         .orElseThrow(DiscountCodeNotFoundException::new);
   }
 
-  public DiscountCodeEntity addPromoCode(DiscountCode discountCode){
+
+  public DiscountCodeEntity addPromoCode(DiscountCode discountCode) {
     DiscountCodeEntity discountCodeEntity = new DiscountCodeEntity();
     discountCodeEntity.setPromoCode(discountCode.getPromoCode());
-    discountCodeEntity.setPriceEntity(discountCode.getPriceEntity());
+    discountCodeEntity.setPrice(discountCode.getPrice());
     discountCodeEntity.setExpirationDate(discountCode.getExpirationDate());
     discountCodeEntity.setMaximalNumberOfUsage(discountCode.getMaximalNumberUsage());
     return discountCodeRepository.save(discountCodeEntity);
+  }
+
+  public void useDiscountCode(String promoCode){
+    DiscountCodeEntity discountCodeEntity = getPromoCodeDetails(promoCode);
+    discountCodeEntity.setNumberOfUses(discountCodeEntity.getNumberOfUses() + 1);
+    discountCodeRepository.save(discountCodeEntity);
   }
 
 
