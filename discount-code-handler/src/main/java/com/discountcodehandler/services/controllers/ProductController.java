@@ -17,10 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/products")
 public class ProductController {
 
-  @Autowired
+
   private ProductService productService;
 
-
+  @Autowired
+  public ProductController(ProductService productService) {
+    this.productService = productService;
+  }
 
   @PostMapping("/addProduct")
   public ResponseEntity<ProductEntity> addProduct(@RequestBody Product product) {

@@ -2,22 +2,26 @@ package com.discountcodehandler.models;
 
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Embeddable
 public class Price {
     @NotNull
-    private double price;
+    private double amount;
     @NotNull
     private String currency;
 
     public boolean doesCurrencyMatch(Price price){
-        return currency.equals(price.currency);
+        return currency.equalsIgnoreCase(price.currency);
     }
 
 }

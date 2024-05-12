@@ -12,11 +12,15 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@RequiredArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Getter
 @Setter
@@ -28,7 +32,7 @@ public class DiscountCodeEntity {
   private Long id;
 
 
-  @Column(name = "promoCode", unique = true) //sprawdzic czy nie zmienic column na jakiegos uniqa
+  @Column(name = "promoCode", unique = true)
   @NotNull
   @NotBlank(message = "Promo code must not be blank")
   @Size(min = 3, max = 24, message = "Promo code must be between 3 and 24 characters.")
@@ -50,11 +54,11 @@ public class DiscountCodeEntity {
   private long numberOfUses;
 
   public boolean isExpired() {
-      LocalDate currentDate = LocalDate.now();
-      return expirationDate != null && expirationDate.isBefore(currentDate);
+    LocalDate currentDate = LocalDate.now();
+    return expirationDate != null && expirationDate.isBefore(currentDate);
   }
 
-  public boolean isCodeUsed(){
-    return maximalNumberOfUsage<=numberOfUses;
+  public boolean isCodeUsed() {
+    return maximalNumberOfUsage <= numberOfUses;
   }
 }

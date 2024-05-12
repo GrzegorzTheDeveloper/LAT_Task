@@ -22,8 +22,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/purchase")
 public class PurchaseController {
 
-  @Autowired
   private PurchaseService purchaseService;
+
+  @Autowired
+  public PurchaseController(PurchaseService purchaseService) {
+    this.purchaseService = purchaseService;
+  }
 
   @ExceptionHandler
   @ResponseStatus(HttpStatus.NOT_FOUND)
@@ -40,21 +44,21 @@ public class PurchaseController {
   }
 
 
-
   @PostMapping("/getDiscountPrice/{promoCode}")
-  public ResponseEntity<DiscountPriceResult> getDiscountPrice(@PathVariable String promoCode, @RequestBody Product product) {
+  public ResponseEntity<DiscountPriceResult> getDiscountPrice(@PathVariable String promoCode,
+      @RequestBody Product product) {
 
-    return ResponseEntity.ok(purchaseService.getDiscountPrice(promoCode, product));
+    return ResponseEntity.ok(purchaseService.calculateDiscountPrice(promoCode, product));
   }
 
   @PostMapping("/simulatePurchase/{promoCode}/{productId}")
-  public ResponseEntity<PurchaseEntity> simulatePurchase(@PathVariable String promoCode, @PathVariable Long productId){
+  public ResponseEntity<PurchaseEntity> simulatePurchase(@PathVariable String promoCode,
+      @PathVariable Long productId) {
 
     PurchaseEntity purchaseEntity = purchaseService.simulatePurchase(promoCode, productId);
     return ResponseEntity.created(URI.create("/purchase/" + purchaseEntity.getPurchaseId()))
         .body(purchaseEntity);
   }
-
 
 
 }

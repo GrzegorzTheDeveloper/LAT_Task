@@ -21,29 +21,21 @@ public class PurchaseService {
   private final ProductService productService;
 
 
-
-
-  public DiscountPriceResult getDiscountPrice(String promoCode, Product product) {
+  public DiscountPriceResult calculateDiscountPrice(String promoCode, Product product) {
 
     DiscountCodeEntity discountCode = discountCodeService.getPromoCodeDetails(promoCode);
     Price productPrice = product.getPrice();
     DiscountPriceResult discountPriceResult = new DiscountPriceResult();
-    discountPriceResult.setPrice(productPrice.getPrice());
+    discountPriceResult.setPrice(productPrice.getAmount());
 
-    if (discountCode.isExpired())
+    if (discountCode.isExpired()) {
       discountPriceResult.setWarning("Code has expired.");
-
-
-    else if(!productPrice.doesCurrencyMatch(discountCode.getPrice()))
+    } else if (!productPrice.doesCurrencyMatch(discountCode.getPrice())) {
       discountPriceResult.setWarning("Currencies do not match");
-
-    else if(discountCode.isCodeUsed())
+    } else if (discountCode.isCodeUsed()) {
       discountPriceResult.setWarning("Code has expired, maximal number of uses reached.");
-
-    else{
-      double discountPrice = productPrice.getPrice() - discountCode.getPrice().getPrice();
-      if(discountPrice<0)
-        discountPrice = 0;
+    } else {
+      double discountPrice = getDiscountedPrice(discountCode, productPrice);
       discountPriceResult.setPrice(discountPrice);
     }
 
@@ -51,7 +43,15 @@ public class PurchaseService {
 
   }
 
-  public PurchaseEntity simulatePurchase(String promoCode, Long productId){
+  private static double getDiscountedPrice(DiscountCodeEntity discountCode, Price productPrice) {
+    double discountedPrice = productPrice.getAmount() - discountCode.getPrice().getAmount();
+    if (discountedPrice < 0) {
+      discountedPrice = 0;
+    }
+    return discountedPrice;
+  }
+
+  public PurchaseEntity simulatePurchase(String promoCode, Long productId) {
 
     ProductEntity productEntity = productService.findById(productId);
     DiscountCodeEntity discountCodeEntity = discountCodeService.getPromoCodeDetails(promoCode);
@@ -59,19 +59,21 @@ public class PurchaseService {
     Product product = new Product();
     product.setPrice(productEntity.getPrice());
 
-    DiscountPriceResult discountPriceResult = getDiscountPrice(promoCode, product);
+    DiscountPriceResult discountPriceResult = calculateDiscountPrice(promoCode, product);
 
     LocalDate date = LocalDate.now();
 
-    PurchaseEntity purchaseEntity = new PurchaseEntity();
-    purchaseEntity.setDate(date);
-    if(discountPriceResult.getPrice() != productEntity.getPrice().getPrice()) {
-      purchaseEntity.setDiscount(discountCodeEntity.getPrice().getPrice());
+    PurchaseEntity purchaseEntity = PurchaseEntity.builder()
+        .ProductName(product.getName())
+        .date(date)
+        .regularPrice(productEntity.getPrice())
+        .build();
+
+    if (discountPriceResult.getPrice() != productEntity.getPrice().getAmount()) {
+      purchaseEntity.setDiscount(discountCodeEntity.getPrice().getAmount());
       discountCodeService.useDiscountCode(promoCode);
     }
 
-    purchaseEntity.setProductName(productEntity.getName());
-    purchaseEntity.setRegularPrice(productEntity.getPrice());
 
     return purchaseRepository.save(purchaseEntity);
 

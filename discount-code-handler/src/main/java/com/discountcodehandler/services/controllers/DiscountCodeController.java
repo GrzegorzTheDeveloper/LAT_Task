@@ -23,8 +23,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/promo")
 public class DiscountCodeController {
 
-  @Autowired
   private DiscountCodeService discountCodeService;
+
+  @Autowired
+  public DiscountCodeController(DiscountCodeService discountCodeService) {
+    this.discountCodeService = discountCodeService;
+  }
 
   @ExceptionHandler
   @ResponseStatus(HttpStatus.NOT_FOUND)
