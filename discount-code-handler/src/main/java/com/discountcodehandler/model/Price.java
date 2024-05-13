@@ -1,4 +1,4 @@
-package com.discountcodehandler.models;
+package com.discountcodehandler.model;
 
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.NotNull;

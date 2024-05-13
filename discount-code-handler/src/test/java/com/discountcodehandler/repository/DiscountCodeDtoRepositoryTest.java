@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import com.discountcodehandler.models.DiscountCodeEntity;
-import com.discountcodehandler.models.Price;
+import com.discountcodehandler.model.DiscountCodeEntity;
+import com.discountcodehandler.model.Price;
 import com.discountcodehandler.repositorie.DiscountCodeRepository;
 import com.discountcodehandler.service.DiscountCodeService;
 import java.time.LocalDate;
@@ -22,7 +22,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
-class DiscountCodeRepositoryTest {
+class DiscountCodeDtoRepositoryTest {
 
   @Mock
   private DiscountCodeRepository discountCodeRepository;

@@ -1,11 +1,11 @@
 package com.discountcodehandler.controller;
 
-import com.discountcodehandler.models.dto.Product;
-import com.discountcodehandler.models.ProductEntity;
+import com.discountcodehandler.model.command.ProductCommand;
+import com.discountcodehandler.model.dto.ProductDto;
 import com.discountcodehandler.service.ProductService;
-import java.net.URI;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,25 +15,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/products")
+@RequiredArgsConstructor
 public class ProductController {
 
 
-  private ProductService productService;
+  private final ProductService productService;
 
-  @Autowired
-  public ProductController(ProductService productService) {
-    this.productService = productService;
+  @PostMapping
+  public ResponseEntity<ProductDto> create(@RequestBody ProductCommand command) {
+    return new ResponseEntity<>(productService.create(command), HttpStatus.CREATED);
   }
 
-  @PostMapping("/addProduct")
-  public ResponseEntity<ProductEntity> addProduct(@RequestBody Product product) {
-    ProductEntity createdProductEntity = productService.addProduct(product);
-    return ResponseEntity.created(URI.create("/products/" + createdProductEntity.getProductId()))
-        .body(createdProductEntity);
-  }
-
-  @GetMapping("/getAllProducts")
-  public ResponseEntity<List<ProductEntity>> getAllProducts() {
-      return ResponseEntity.ok(productService.getAllProducts());
+  @GetMapping
+  public ResponseEntity<List<ProductDto>> getAllProducts() {
+      return new ResponseEntity<>(productService.findAll(), HttpStatus.OK);
   }
 }

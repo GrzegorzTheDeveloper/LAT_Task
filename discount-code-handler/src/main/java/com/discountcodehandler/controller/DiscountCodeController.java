@@ -1,12 +1,13 @@
 package com.discountcodehandler.controller;
 
 import com.discountcodehandler.exception.DiscountCodeNotFoundException;
-import com.discountcodehandler.models.DiscountCodeEntity;
-import com.discountcodehandler.models.dto.DiscountCode;
+import com.discountcodehandler.model.DiscountCodeEntity;
+import com.discountcodehandler.model.command.DiscountCodeCommand;
+import com.discountcodehandler.model.dto.DiscountCodeDto;
 import com.discountcodehandler.service.DiscountCodeService;
-import java.net.URI;
+import jakarta.validation.Valid;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -19,40 +20,35 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-
+@RequiredArgsConstructor
 @RequestMapping("/promo")
 public class DiscountCodeController {
 
-  private DiscountCodeService discountCodeService;
-
-  @Autowired
-  public DiscountCodeController(DiscountCodeService discountCodeService) {
-    this.discountCodeService = discountCodeService;
-  }
+  private final DiscountCodeService discountCodeService;
 
   @ExceptionHandler
   @ResponseStatus(HttpStatus.NOT_FOUND)
   public ResponseEntity<String> handleDiscountNotFoundException(
       DiscountCodeNotFoundException discountCodeNotFoundException) {
-    return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No such discount code");
+    return ResponseEntity.status(HttpStatus.NOT_FOUND)
+        .body(discountCodeNotFoundException.getMessage());
   }
 
 
-  @GetMapping("/getAll")
-  public ResponseEntity<List<String>> GetAllPromoCodes() {
-    return ResponseEntity.ok(discountCodeService.findAllPromoCodes());
+  @GetMapping
+  public ResponseEntity<List<DiscountCodeDto>> getAll() {
+    return new ResponseEntity<>(discountCodeService.findAll(), HttpStatus.OK);
   }
 
-  @GetMapping("/getDetails/{promoCode}")
-  public ResponseEntity<DiscountCodeEntity> getDiscountCodeDetails(@PathVariable String promoCode) {
-    return ResponseEntity.ok(discountCodeService.getPromoCodeDetails(promoCode));
+
+  @GetMapping("/{promoCode}")
+  public ResponseEntity<DiscountCodeDto> getDiscountCodeDetails(@PathVariable String promoCode) {
+    return new ResponseEntity<>(discountCodeService.getPromoCodeDetails(promoCode),HttpStatus.OK);
   }
 
-  @PostMapping("/addPromoCode")
-  public ResponseEntity<DiscountCodeEntity> addDiscountCode(
-      @RequestBody DiscountCode discountCode) {
-    DiscountCodeEntity discountCodeEntity = discountCodeService.addPromoCode(discountCode);
-    return ResponseEntity.created(URI.create("/promo/" + discountCodeEntity.getId()))
-        .body(discountCodeEntity);
+  @PostMapping
+  public ResponseEntity<DiscountCodeDto> create(@RequestBody @Valid DiscountCodeCommand command) {
+    return new ResponseEntity<>(discountCodeService.create(command), HttpStatus.CREATED);
   }
+
 }

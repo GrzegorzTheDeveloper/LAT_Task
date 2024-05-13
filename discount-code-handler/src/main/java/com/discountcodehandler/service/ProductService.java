@@ -1,34 +1,32 @@
 package com.discountcodehandler.service;
 
 import com.discountcodehandler.exception.ProductNotFountException;
-import com.discountcodehandler.models.ProductEntity;
-import com.discountcodehandler.models.dto.Product;
+import com.discountcodehandler.model.ProductEntity;
+import com.discountcodehandler.model.command.ProductCommand;
+import com.discountcodehandler.model.dto.ProductDto;
 import com.discountcodehandler.repositorie.ProductRepository;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class ProductService {
 
 
   private final ProductRepository productRepository;
 
-  @Autowired
-  public ProductService(ProductRepository productRepository) {
-    this.productRepository = productRepository;
+
+  public ProductDto create(ProductCommand command) {
+    ProductEntity productEntity = command.mapFromDto();
+    return ProductDto.mapToDto(productRepository.save(productEntity));
   }
 
-  public ProductEntity addProduct(Product product) {
-    ProductEntity productEntity = new ProductEntity();
-    productEntity.setName(product.getName());
-    productEntity.setPrice(product.getPrice());
-    productEntity.setDescription(product.getDescription());
-    return productRepository.save(productEntity);
-  }
+  public List<ProductDto> findAll() {
+    return productRepository.findAll().stream()
+        .map(ProductDto::mapToDto)
+        .toList();
 
-  public List<ProductEntity> getAllProducts() {
-    return productRepository.findAll();
   }
 
   public ProductEntity findById(Long id) {

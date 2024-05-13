@@ -4,21 +4,21 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class DiscountCodeControllerTest {
+class PurchaseDtoControllerTest {
 
   @Test
   void handleDiscountNotFoundException() {
   }
 
   @Test
-  void getAllPromoCodes() {
+  void handleProductNotFoundException() {
   }
 
   @Test
-  void getDiscountCodeDetails() {
+  void getDiscountPrice() {
   }
 
   @Test
-  void addDiscountCode() {
+  void simulatePurchase() {
   }
 }

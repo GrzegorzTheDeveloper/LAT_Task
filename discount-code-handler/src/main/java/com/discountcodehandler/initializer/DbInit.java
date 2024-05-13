@@ -1,8 +1,8 @@
 package com.discountcodehandler.initializer;
 
-import com.discountcodehandler.models.DiscountCodeEntity;
-import com.discountcodehandler.models.Price;
-import com.discountcodehandler.models.ProductEntity;
+import com.discountcodehandler.model.DiscountCodeEntity;
+import com.discountcodehandler.model.Price;
+import com.discountcodehandler.model.ProductEntity;
 import com.discountcodehandler.repositorie.DiscountCodeRepository;
 import com.discountcodehandler.repositorie.ProductRepository;
 import java.time.LocalDate;
