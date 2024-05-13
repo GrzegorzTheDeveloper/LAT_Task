@@ -29,8 +29,8 @@ public class ProductService {
 
   }
 
-  public ProductEntity findById(Long id) {
-    return productRepository.findById(id).orElseThrow(ProductNotFountException::new);
+  public ProductDto findById(Long id) {
+    return ProductDto.mapToDto(productRepository.findById(id).orElseThrow(ProductNotFountException::new));
   }
 
 }

@@ -5,6 +5,7 @@ import com.discountcodehandler.model.DiscountPriceResult;
 import com.discountcodehandler.model.Price;
 import com.discountcodehandler.model.ProductEntity;
 import com.discountcodehandler.model.PurchaseEntity;
+import com.discountcodehandler.model.dto.ProductDto;
 import com.discountcodehandler.model.dto.PurchaseDto;
 import com.discountcodehandler.repositorie.PurchaseRepository;
 import java.time.LocalDate;
@@ -32,7 +33,7 @@ public class PurchaseService {
 
     DiscountCodeEntity discountCode = discountCodeService.getDiscountCodeEntityByPromoCode(
         promoCode);
-    ProductEntity product = productService.findById(id);
+    ProductDto product = productService.findById(id);
     Price productPrice = product.getPrice();
     DiscountPriceResult discountPriceResult = new DiscountPriceResult();
     discountPriceResult.setPrice(productPrice.getAmount());
@@ -54,7 +55,7 @@ public class PurchaseService {
 
   public PurchaseDto create(long productId, String promoCode) {
 
-    ProductEntity productEntity = productService.findById(productId);
+    ProductDto productEntity = productService.findById(productId);
     DiscountCodeEntity discountCodeEntity = discountCodeService.getDiscountCodeEntityByPromoCode(
         promoCode);
     DiscountPriceResult discountPriceResult = calculateDiscountPrice(productId, promoCode);

@@ -5,12 +5,11 @@ import com.discountcodehandler.model.PurchaseEntity;
 import com.discountcodehandler.model.dto.PurchaseDto;
 import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 
-@Getter
-@Builder
+@Data
 public class PurchaseCommand {
+
   @NotNull
   private LocalDate date;
   @NotNull

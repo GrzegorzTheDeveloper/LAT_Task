@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Lock;
 
 public interface DiscountCodeRepository extends JpaRepository<DiscountCodeEntity, Long> {
 
-  @Lock(LockModeType.PESSIMISTIC_WRITE)
   Optional<DiscountCodeEntity> findByPromoCode(String promoCode);
 
 }

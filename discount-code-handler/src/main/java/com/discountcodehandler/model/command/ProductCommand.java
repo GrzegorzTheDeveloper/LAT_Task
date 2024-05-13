@@ -3,12 +3,10 @@ package com.discountcodehandler.model.command;
 import com.discountcodehandler.model.Price;
 import com.discountcodehandler.model.ProductEntity;
 import jakarta.validation.constraints.NotNull;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 
 
-@Getter
-@Builder
+@Data
 public class ProductCommand {
 
   @NotNull
