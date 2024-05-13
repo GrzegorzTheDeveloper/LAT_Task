@@ -1,11 +1,9 @@
-package com.discountcodehandler.models.dtos;
+package com.discountcodehandler.models.dto;
 
 import com.discountcodehandler.models.ProductEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.LocalDate;
 import lombok.*;
-
-import java.util.Date;
 
 @RequiredArgsConstructor
 @Getter

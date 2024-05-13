@@ -1,19 +1,24 @@
-package com.discountcodehandler.services;
+package com.discountcodehandler.service;
 
 import com.discountcodehandler.exception.DiscountCodeNotFoundException;
 import com.discountcodehandler.models.DiscountCodeEntity;
-import com.discountcodehandler.models.dtos.DiscountCode;
-import com.discountcodehandler.repositories.DiscountCodeRepository;
+import com.discountcodehandler.models.dto.DiscountCode;
+import com.discountcodehandler.repositorie.DiscountCodeRepository;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 public class DiscountCodeService {
 
-  private final DiscountCodeRepository discountCodeRepository;
+  private DiscountCodeRepository discountCodeRepository;
+
+  @Autowired
+  public DiscountCodeService(DiscountCodeRepository discountCodeRepository) {
+    this.discountCodeRepository = discountCodeRepository;
+  }
 
   public List<String> findAllPromoCodes() {
     List<DiscountCodeEntity> codes = discountCodeRepository.findAll();

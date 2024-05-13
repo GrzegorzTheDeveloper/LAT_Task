@@ -1,20 +1,23 @@
-package com.discountcodehandler.services;
+package com.discountcodehandler.service;
 
 import com.discountcodehandler.exception.ProductNotFountException;
 import com.discountcodehandler.models.ProductEntity;
-import com.discountcodehandler.models.dtos.Product;
-import com.discountcodehandler.repositories.ProductRepository;
+import com.discountcodehandler.models.dto.Product;
+import com.discountcodehandler.repositorie.ProductRepository;
 import java.util.List;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 public class ProductService {
 
 
   private final ProductRepository productRepository;
 
+  @Autowired
+  public ProductService(ProductRepository productRepository) {
+    this.productRepository = productRepository;
+  }
 
   public ProductEntity addProduct(Product product) {
     ProductEntity productEntity = new ProductEntity();
@@ -27,7 +30,8 @@ public class ProductService {
   public List<ProductEntity> getAllProducts() {
     return productRepository.findAll();
   }
-  public ProductEntity findById(Long id){
+
+  public ProductEntity findById(Long id) {
     return productRepository.findById(id).orElseThrow(ProductNotFountException::new);
   }
 

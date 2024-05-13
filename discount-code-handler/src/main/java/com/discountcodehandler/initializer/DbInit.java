@@ -1,10 +1,10 @@
-package com.discountcodehandler.initializers;
+package com.discountcodehandler.initializer;
 
 import com.discountcodehandler.models.DiscountCodeEntity;
 import com.discountcodehandler.models.Price;
 import com.discountcodehandler.models.ProductEntity;
-import com.discountcodehandler.repositories.DiscountCodeRepository;
-import com.discountcodehandler.repositories.ProductRepository;
+import com.discountcodehandler.repositorie.DiscountCodeRepository;
+import com.discountcodehandler.repositorie.ProductRepository;
 import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;

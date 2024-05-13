@@ -1,8 +1,8 @@
-package com.discountcodehandler.services.controllers;
+package com.discountcodehandler.controller;
 
-import com.discountcodehandler.models.dtos.Product;
+import com.discountcodehandler.models.dto.Product;
 import com.discountcodehandler.models.ProductEntity;
-import com.discountcodehandler.services.ProductService;
+import com.discountcodehandler.service.ProductService;
 import java.net.URI;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

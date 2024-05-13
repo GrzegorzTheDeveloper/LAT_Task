@@ -1,25 +1,20 @@
-package com.discountcodehandler.models.dtos;
+package com.discountcodehandler.models.dto;
 
 import com.discountcodehandler.models.Price;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.time.LocalDate;
 import lombok.*;
+
 
 @RequiredArgsConstructor
 @Getter
 @Setter
-public class DiscountCode {
+public class Product {
 
     @JsonProperty
-    private String promoCode;
-
-    @JsonProperty
-    private LocalDate expirationDate;
-
+    private String name;
     @JsonProperty
     private Price price;
-
     @JsonProperty
-    private long maximalNumberUsage;
+    private String description;
 
 }

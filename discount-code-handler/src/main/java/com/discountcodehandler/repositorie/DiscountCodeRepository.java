@@ -1,4 +1,4 @@
-package com.discountcodehandler.repositories;
+package com.discountcodehandler.repositorie;
 
 import com.discountcodehandler.models.DiscountCodeEntity;
 import java.util.Optional;

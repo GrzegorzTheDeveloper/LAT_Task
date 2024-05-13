@@ -1,9 +1,9 @@
-package com.discountcodehandler.services.controllers;
+package com.discountcodehandler.controller;
 
 import com.discountcodehandler.exception.DiscountCodeNotFoundException;
 import com.discountcodehandler.models.DiscountCodeEntity;
-import com.discountcodehandler.models.dtos.DiscountCode;
-import com.discountcodehandler.services.DiscountCodeService;
+import com.discountcodehandler.models.dto.DiscountCode;
+import com.discountcodehandler.service.DiscountCodeService;
 import java.net.URI;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
