@@ -98,33 +98,6 @@ class DiscountCodeServiceTest {
 
   }
 
-//  @Test
-//  void testCreate_HappyPath_ResultsInDiscountCodeBeingSaved() {
-//    //Given
-//    String promoCode = "abc";
-//    DiscountCodeCommand codeCommand = DiscountCodeCommand.builder()
-//        .promoCode(promoCode)
-//        .build();
-//
-//    DiscountCodeEntity codeEntity = DiscountCodeEntity.builder()
-//        .id(1L)
-//        .promoCode(promoCode)
-//        .build();
-//
-//    DiscountCodeDto codeDto = DiscountCodeDto.builder()
-//        .id(1L)
-//        .promoCode(promoCode)
-//        .build();
-//
-//
-//    //When
-//   discountCodeService.create(codeCommand);
-//    //Then
-//    verify(discountCodeRepository).save(codeEntityArgumentCaptor.capture());
-//    DiscountCodeEntity savedCode = codeEntityArgumentCaptor.getValue();
-//    assertEquals(codeEntity.getPromoCode(),savedCode.getPromoCode());
-//
-//  }
 
   @Test
   void testIncrementNumberOfUses_HappyPath_ResultInIncrementationNumberOfUses() {

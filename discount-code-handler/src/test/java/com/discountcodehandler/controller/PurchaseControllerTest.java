@@ -1,10 +1,8 @@
 package com.discountcodehandler.controller;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
 
-class PurchaseDtoControllerTest {
+class PurchaseControllerTest {
 
   @Test
   void handleDiscountNotFoundException() {
