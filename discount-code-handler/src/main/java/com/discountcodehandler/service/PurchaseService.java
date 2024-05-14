@@ -3,7 +3,6 @@ package com.discountcodehandler.service;
 import com.discountcodehandler.model.DiscountCodeEntity;
 import com.discountcodehandler.model.DiscountPriceResult;
 import com.discountcodehandler.model.Price;
-import com.discountcodehandler.model.ProductEntity;
 import com.discountcodehandler.model.PurchaseEntity;
 import com.discountcodehandler.model.dto.ProductDto;
 import com.discountcodehandler.model.dto.PurchaseDto;
@@ -72,7 +71,7 @@ public class PurchaseService {
       discountCodeService.incrementNumberOfUses(promoCode);
     }
 
-    return PurchaseDto.mapToDtoForCreate(purchaseRepository.save(purchaseEntity));
+    return PurchaseDto.mapToDto(purchaseRepository.save(purchaseEntity));
 
   }
 }

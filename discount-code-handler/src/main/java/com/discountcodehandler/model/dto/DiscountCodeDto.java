@@ -28,7 +28,7 @@ public class DiscountCodeDto {
         .expirationDate(code.getExpirationDate())
         .promoCode(code.getPromoCode())
         .price(code.getPrice())
-        .maximalNumberUsage(code.getMaximalNumberOfUsage())
+        .maximalNumberUsage(code.getMaximalNumberUsage())
         .numberOfUses(code.getNumberOfUses())
         .build();
   }

@@ -1,10 +1,12 @@
 package com.discountcodehandler.service;
 
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
+import com.discountcodehandler.exception.ProductNotFountException;
 import com.discountcodehandler.model.DiscountCodeEntity;
 import com.discountcodehandler.model.ProductEntity;
 import com.discountcodehandler.model.dto.ProductDto;
@@ -77,6 +79,21 @@ class ProductServiceTest {
     //Then
     verify(productRepository).findById(id);
     assertEquals(product.getName(), result.getName());
+    verifyNoMoreInteractions(productRepository);
+  }
+
+  @Test
+  void testFindById_ProductNotFound_ResultInProductNotFoundException(){
+    //Given
+    long id = 1L;
+    String name = "abc";
+    String exceptionMessage = "Product not found";
+    //When
+    assertThatExceptionOfType(ProductNotFountException.class)
+        .isThrownBy(() -> productService.findById(id)).withMessage(exceptionMessage)
+            .withMessage(exceptionMessage);
+    //Then
+    verify(productRepository).findById(id);
     verifyNoMoreInteractions(productRepository);
   }
 

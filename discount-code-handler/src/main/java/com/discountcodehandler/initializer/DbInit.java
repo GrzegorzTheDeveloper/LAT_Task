@@ -32,7 +32,7 @@ public class DbInit implements ApplicationRunner {
         .promoCode("BIKE10")
         .expirationDate(LocalDate.parse("2024-12-31"))
         .price(Price.builder().amount(10.00).currency("USD").build())
-        .maximalNumberOfUsage(100)
+        .maximalNumberUsage(100)
         .numberOfUses(0)
         .build());
 
@@ -40,7 +40,7 @@ public class DbInit implements ApplicationRunner {
         .promoCode("BIKE20")
         .expirationDate(LocalDate.parse("2024-12-31"))
         .price(Price.builder().amount(20.00).currency("USD").build())
-        .maximalNumberOfUsage(200)
+        .maximalNumberUsage(200)
         .numberOfUses(0)
         .build());
 
@@ -48,7 +48,7 @@ public class DbInit implements ApplicationRunner {
         .promoCode("BIKE25EUR")
         .expirationDate(LocalDate.parse("2024-12-31"))
         .price(Price.builder().amount(25.00).currency("EUR").build())
-        .maximalNumberOfUsage(150)
+        .maximalNumberUsage(150)
         .numberOfUses(0)
         .build());
 
@@ -56,7 +56,7 @@ public class DbInit implements ApplicationRunner {
         .promoCode("SUMMER15")
         .expirationDate(LocalDate.parse("2024-08-31"))
         .price(Price.builder().amount(15.00).currency("USD").build())
-        .maximalNumberOfUsage(50)
+        .maximalNumberUsage(50)
         .numberOfUses(0)
         .build());
 
@@ -64,7 +64,7 @@ public class DbInit implements ApplicationRunner {
         .promoCode("BIKE50")
         .expirationDate(LocalDate.parse("2024-12-31"))
         .price(Price.builder().amount(50.00).currency("USD").build())
-        .maximalNumberOfUsage(300)
+        .maximalNumberUsage(300)
         .numberOfUses(0)
         .build());
 

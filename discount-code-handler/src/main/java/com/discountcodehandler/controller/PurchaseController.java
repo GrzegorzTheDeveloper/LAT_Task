@@ -28,14 +28,14 @@ public class PurchaseController {
   @ResponseStatus(HttpStatus.NOT_FOUND)
   public ResponseEntity<String> handleDiscountNotFoundException(
       DiscountCodeNotFoundException discountCodeNotFoundException) {
-    return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No such discount code");
+    return ResponseEntity.status(HttpStatus.NOT_FOUND).body(discountCodeNotFoundException.getMessage());
   }
 
   @ExceptionHandler
   @ResponseStatus(HttpStatus.NOT_FOUND)
   public ResponseEntity<String> handleProductNotFoundException(
       ProductNotFountException productNotFountException) {
-    return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No such product");
+    return ResponseEntity.status(HttpStatus.NOT_FOUND).body(productNotFountException.getMessage());
   }
 
 

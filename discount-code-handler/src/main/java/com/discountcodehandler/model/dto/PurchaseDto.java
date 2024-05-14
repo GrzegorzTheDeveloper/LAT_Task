@@ -19,7 +19,7 @@ public class PurchaseDto {
 
   private double discount;
 
-  public static PurchaseDto mapToDtoForCreate(PurchaseEntity purchase) {
+  public static PurchaseDto mapToDto(PurchaseEntity purchase) {
     return PurchaseDto.builder()
         .id(purchase.getPurchaseId())
         .productName(purchase.getProductName())

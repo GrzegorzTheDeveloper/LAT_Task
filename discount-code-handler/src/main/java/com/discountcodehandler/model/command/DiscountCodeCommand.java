@@ -29,7 +29,7 @@ public class DiscountCodeCommand {
     return DiscountCodeEntity.builder()
         .promoCode(getPromoCode())
         .price(getPrice())
-        .maximalNumberOfUsage(getMaximalNumberUsage())
+        .maximalNumberUsage(getMaximalNumberUsage())
         .expirationDate(getExpirationDate())
         .build();
   }

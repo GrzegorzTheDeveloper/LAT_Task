@@ -35,7 +35,7 @@ public class DiscountCodeEntity {
   @Embedded
   private Price price;
 
-  private long maximalNumberOfUsage;
+  private long maximalNumberUsage;
 
   private long numberOfUses;
 
@@ -45,6 +45,6 @@ public class DiscountCodeEntity {
   }
 
   public boolean isCodeUsed() {
-    return maximalNumberOfUsage <= numberOfUses;
+    return maximalNumberUsage <= numberOfUses;
   }
 }
