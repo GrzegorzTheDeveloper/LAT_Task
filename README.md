@@ -30,10 +30,10 @@ all while accommodating various currencies.
 ## Setup
 
 To build the application u need to run the command bellow once you are in the project directory.
->> ./gradlew build
+> ./gradlew build
 
 To run the application after running aforementioned command you need to navigate to the root directory and run the command bellow.
->> ./gradlew bootRun
+> ./gradlew bootRun
 
 First, you need to run DiscountCodeHandlerApplication then past the link into your browser \
 http://localhost:8080/swagger-ui/index.html 
