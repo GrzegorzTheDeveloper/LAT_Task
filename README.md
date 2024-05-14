@@ -7,6 +7,7 @@
 * [**General info**](#general-info)
 * [**Setup**](#setup)
 * [**Application view**](#application-view)
+* [**Testing**](#testing)
 
 ***
 
@@ -74,7 +75,58 @@ Now you can access the endpoints which correspond to methods:
 > * Simulate purchase: POST http://localhost:8080/purchase/simulatePurchase/{productId}/{promoCode} \
 > Example: POST http://localhost:8080/purchase/simulatePurchase/1/BIKE10
 
+## Testing 
 
+Test Database Initialization
+To facilitate testing and exploration of the application, a set of sample data is automatically populated into the database upon application startup. This sample data includes:
+
+Discount Codes
+BIKE10
+
+Expiration Date: 2024-12-31
+Price: $10.00 USD
+Maximal Number of Usage: 100
+BIKE20
+
+Expiration Date: 2024-12-31
+Price: $20.00 USD
+Maximal Number of Usage: 200
+BIKE25EUR
+
+Expiration Date: 2024-12-31
+Price: €25.00 EUR
+Maximal Number of Usage: 150
+SUMMER15
+
+Expiration Date: 2024-08-31
+Price: $15.00 USD
+Maximal Number of Usage: 50
+BIKE50
+
+Expiration Date: 2024-12-31
+Price: $50.00 USD
+Maximal Number of Usage: 300
+Products
+Mountain Bike
+
+Price: $500.00 USD
+Description: A rugged mountain bike designed for off-road adventures.
+Road Bike
+
+Price: $750.00 USD
+Description: A sleek road bike optimized for speed on paved roads.
+Hybrid Bike
+
+Price: $600.00 USD
+Description: A versatile hybrid bike suitable for city commuting and light trails.
+Electric Bike
+
+Price: $1200.00 USD
+Description: An eco-friendly electric bike with pedal assist for effortless riding.
+Kids Bike
+
+Price: $150.00 USD
+Description: A fun and colorful bike specially designed for kids.
 
 
 
